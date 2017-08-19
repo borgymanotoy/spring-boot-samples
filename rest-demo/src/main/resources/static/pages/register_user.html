@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Register User</title>
+        <link type="text/css" rel="stylesheet" href='../css/forms.css'>
+        <script type='text/javascript' src='../js/jquery.min.js'></script>
+        <script>
+            $(document).ready(function(){
+                $('#btnAddUser').on('click', function(){
+
+                });
+
+                $('#btnClearForm').on('click', function(){
+                    alert('Clear Form');
+                    $('input[type="hidden"]').val("");
+                    $('input[type="text"]').val("");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>RESTful Example: Register User (POST)</h1>
+        <div class="divContainer">
+            <input type="hidden" id="hdnUserId" name="userId" value="" />
+            <p>
+                <label for="txtUsername">Username</label>
+                <input type="text" id="txtUsername" name="username" placeholder="Username [a-zA-Z0-9]" title="Enter username here" />
+            </p>
+            <p>
+                <label for="txtFirstname">First Name</label>
+                <input type="text" id="txtFirstname" name="firstname" placeholder="First Name [a-zA-Z]" title="Enter first name here" />
+            </p>
+            <p>
+                <label for="txtLastname">Last Name</label>
+                <input type="text" id="txtLastname" name="lastname" placeholder="Last Name [a-zA-Z]" title="Enter last name here" />
+            </p>
+            <p>
+                <label for="txtEmail">Email Address</label>
+                <input type="text" id="txtEmail" name="email" placeholder="Email Address (Valid Email Address)" title="Enter a valid email address here" />
+            </p>
+            <p>
+                <label for="txtContact">Contact Number</label>
+                <input type="text" id="txtContact" name="contactNo" placeholder="Ex. (0918) 232-1234, (082) 222-4211, (6382) 300-1933" title="Follow the formats of these examples (0918) 232-1234, (082) 222-4211, (6382) 300-1933" />
+            </p>
+            <p>
+                <button id="btnAddUser">Add</button>
+                <button id="btnClearForm">Clear</button>
+            </p>
+        </div>
+    </body>
+</html>
