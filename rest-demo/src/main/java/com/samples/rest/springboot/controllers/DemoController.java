@@ -44,6 +44,14 @@ public class DemoController {
     @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
     public ResponseEntity<?> registerUser(@RequestBody User user) throws NotFound{
         boolean status = false;
+
+        System.out.println("\n\n");
+        System.out.println("---------------------------------------");
+        System.out.println("REGISTER-USER");
+        System.out.println("---------------------------------------");
+        System.out.println("\n\n");
+
+
         if(null == user)
             throw new NotFound();
         else

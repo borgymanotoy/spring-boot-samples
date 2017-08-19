@@ -6,21 +6,54 @@
         <script>
             $(document).ready(function(){
                 $('#btnAddUser').on('click', function(){
+                    if(validateForm){
+                        var my_url = "http://localhost:8080/api/registerUser";
+
+                        var my_data = {
+                            id: $('#txtUserId').val(),
+                            username: $('#txtUsername').val(),
+                            firstname: $('#txtFirstname').val(),
+                            lastname: $('#txtLastname').val(),
+                            email: $('#txtEmail').val(),
+                            contactNo: $('#txtContact').val()
+                        };
+
+                        alert(JSON.stringify(my_data));
+
+                        $.ajax({
+                            method: "POST",
+                            url: my_url,
+                            data: my_data,
+                            contentType:'application/json'
+                        })
+                        .done(function( msg ) {
+                            alert( "POST Success: " + msg );
+                        });
+                    }
+                    else {
+                        alert('Please fill up all the fields!');
+                    }
+
 
                 });
 
                 $('#btnClearForm').on('click', function(){
-                    alert('Clear Form');
-                    $('input[type="hidden"]').val("");
                     $('input[type="text"]').val("");
                 });
             });
+
+            var validateForm = function(){
+                return '' != $('#txtUserId').val() && '' != $('#txtUsername').val() && '' != $('#txtFirstname').val() && ''!= $('#txtLastname').val() && ''!=$('#txtEmail').val() && ''!=$('#txtContact').val();
+            }
         </script>
     </head>
     <body>
         <h1>RESTful Example: Register User (POST)</h1>
         <div class="divContainer">
-            <input type="hidden" id="hdnUserId" name="userId" value="" />
+            <p>
+                <label for="txtUserId">ID</label>
+                <input type="text" id="txtUserId" name="id" placeholder="User ID [0-9]" title="Enter user ID here" />
+            </p>
             <p>
                 <label for="txtUsername">Username</label>
                 <input type="text" id="txtUsername" name="username" placeholder="Username [a-zA-Z0-9]" title="Enter username here" />
