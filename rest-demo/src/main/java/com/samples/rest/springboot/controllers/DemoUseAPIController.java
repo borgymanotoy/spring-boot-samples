@@ -1,10 +1,34 @@
 package com.samples.rest.springboot.controllers;
 
-import org.springframework.web.bind.annotation.RestController;
+import com.samples.rest.springboot.models.ConversionRequest;
+import com.samples.rest.springboot.models.User;
+import com.samples.rest.springboot.utilities.CurrencyConverter;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping(value = "/api")
+@CrossOrigin(origins = {"http://localhost:8000", "http://localhost:9000"})
 public class DemoUseAPIController {
 
+    @RequestMapping(value = "/getCurrencyRate", method = RequestMethod.GET)
+    public ResponseEntity<?> getUser(@RequestParam(value = "fromCurrency") String fromCurrency,
+                                     @RequestParam(value = "toCurrency") String toCurrency) {
 
+        ConversionRequest request = new ConversionRequest(fromCurrency, toCurrency);
+        Double rate = CurrencyConverter.getConversionRate(fromCurrency, toCurrency);
+
+        return new ResponseEntity<>(rate, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/convertCurrency", method = RequestMethod.POST)
+    public ResponseEntity<?> registerUser(@RequestBody ConversionRequest request) throws NotFound {
+        if(request.isValidRequest())
+            request.setConvertedAmount(CurrencyConverter.convertCurrency(request.getFromCurrency(), request.getToCurrency(), request.getSourceAmount()));
+
+        return new ResponseEntity<>(request, HttpStatus.OK);
+    }
 
 }

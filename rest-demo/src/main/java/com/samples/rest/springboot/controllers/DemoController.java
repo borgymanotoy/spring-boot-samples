@@ -12,7 +12,6 @@ import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/api")
-//@CrossOrigin(origins = { "http://localhost:8000", "http://localhost:9000", "http://cargoking.com.ph" }, maxAge = 4800, allowCredentials = "true", allowedHeaders = "true")
 @CrossOrigin(origins = {"http://localhost:8000", "http://localhost:9000"})
 public class DemoController {
 
