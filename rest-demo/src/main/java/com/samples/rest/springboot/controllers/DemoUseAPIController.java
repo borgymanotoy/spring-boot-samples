@@ -25,10 +25,11 @@ public class DemoUseAPIController {
 
     @RequestMapping(value = "/convertCurrency", method = RequestMethod.POST)
     public ResponseEntity<?> registerUser(@RequestBody ConversionRequest request) throws NotFound {
+        Double result = new Double(0);
         if(request.isValidRequest())
-            request.setConvertedAmount(CurrencyConverter.convertCurrency(request.getFromCurrency(), request.getToCurrency(), request.getSourceAmount()));
+            result = CurrencyConverter.convertCurrency(request.getFromCurrency(), request.getToCurrency(), request.getSourceAmount());
 
-        return new ResponseEntity<>(request, HttpStatus.OK);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
 }
