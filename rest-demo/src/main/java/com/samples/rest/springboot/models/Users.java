@@ -38,6 +38,9 @@ public class Users {
     }
 
     public boolean removeUser(int userId){
+
+        System.out.println("[REMOVE-USER-ID]: " + userId);
+
         if(0 < userId){
             for(User u : users_set){
                 if(userId == u.getId()) {
@@ -46,6 +49,7 @@ public class Users {
                 }
             }
         }
+
         return false;
     }
 

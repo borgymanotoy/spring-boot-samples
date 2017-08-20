@@ -2,6 +2,7 @@ package com.samples.rest.springboot.controllers;
 
 import com.samples.rest.springboot.models.User;
 import com.samples.rest.springboot.models.Users;
+import com.samples.rest.springboot.utilities.ObjectToJsonString;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,8 @@ import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/api")
+//@CrossOrigin(origins = { "http://localhost:8000", "http://localhost:9000", "http://cargoking.com.ph" }, maxAge = 4800, allowCredentials = "true", allowedHeaders = "true")
+@CrossOrigin(origins = {"http://localhost:8000", "http://localhost:9000"})
 public class DemoController {
 
     private Users users = new Users();
@@ -41,16 +44,10 @@ public class DemoController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+
     @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
     public ResponseEntity<?> registerUser(@RequestBody User user) throws NotFound{
         boolean status = false;
-
-        System.out.println("\n\n");
-        System.out.println("---------------------------------------");
-        System.out.println("REGISTER-USER");
-        System.out.println("---------------------------------------");
-        System.out.println("\n\n");
-
 
         if(null == user)
             throw new NotFound();
@@ -78,19 +75,19 @@ public class DemoController {
     }
 
     @RequestMapping(value = "/removeUser", method = RequestMethod.POST)
-    public ResponseEntity<?> removeUser(@RequestParam(value = "userId", defaultValue = "-1") int userId) {
-        boolean status = users.removeUser(userId);
-
-        if(status)
+    public ResponseEntity<?> removeUser(@RequestParam(value = "userId") int userId) {
+        if(users.removeUser(userId))
             return new ResponseEntity<>("User removed successfully", HttpStatus.OK);
         else
             return new ResponseEntity<>("Problem removing user.", HttpStatus.NOT_ACCEPTABLE);
     }
 
     @RequestMapping(value = "/listUsers", method = RequestMethod.GET)
-    public ResponseEntity<?> listUsers() {
+    public ResponseEntity<?> listUsers(@RequestParam(value = "callback", required = false) String callback) {
         Set<User> listUsers = users.listUsers();
-        return new ResponseEntity<>(listUsers, HttpStatus.OK);
+        String responseText = ObjectToJsonString.serializeToJson(listUsers, callback);
+        return new ResponseEntity<>(responseText, HttpStatus.OK);
     }
+
 
 }
