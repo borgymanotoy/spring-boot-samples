@@ -66,17 +66,6 @@
               <th>Action</th>
             </thead>
             <tbody>
-              <tr>
-                  <td>123</td>
-                  <td>dummy_username</td>
-                  <td>Dummy Firstname</td>
-                  <td>Dummy Lastname</td>
-                  <td>email_sample@dummy.ph</td>
-                  <td>(0912) 123-4567</td>
-                  <td>
-                    <a href="javascript:void(0)" onclick="updateDetails();">Edit</a>&nbsp;<a href="javascript:void(0)" onclick="removeUser();">Remove</a>
-                  </td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -173,7 +162,7 @@
                     .done(function( msg ) {
                        bootbox.alert("POST Success: " + msg);
                        $('input[type="text"], input[type="email"]').val("");
-                       $.unblockUI(); 
+                       $.unblockUI();
                        reloadUsers();
                     });
                 }
@@ -184,7 +173,7 @@
 
             $('#btnClearForm').on('click', function(){
                 $('input[type="text"], input[type="email"], input[type="hidden"]').val("");
-                $.unblockUI(); 
+                $.unblockUI();
                 return false;
             });
         });
@@ -212,11 +201,11 @@
         };
 
         var validateForm = function(){
-            var isValid = 
-              '' != $('#txtUserId').val()    && 
-              '' != $('#txtUsername').val()  && 
-              '' != $('#txtFirstname').val() && 
-              '' != $('#txtLastname').val()  && 
+            var isValid =
+              '' != $('#txtUserId').val()    &&
+              '' != $('#txtUsername').val()  &&
+              '' != $('#txtFirstname').val() &&
+              '' != $('#txtLastname').val()  &&
               '' != $('#txtEmail').val();
             return isValid;
         }
