@@ -1,7 +1,6 @@
 package com.samples.rest.springboot.controllers;
 
 import com.samples.rest.springboot.models.ConversionRequest;
-import com.samples.rest.springboot.models.User;
 import com.samples.rest.springboot.utilities.CurrencyConverter;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.springframework.http.HttpStatus;

@@ -46,7 +46,7 @@ public class DemoController {
 
     @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
     public ResponseEntity<?> registerUser(@RequestBody User user) throws NotFound{
-        boolean status = false;
+        boolean status;
 
         if(null == user)
             throw new NotFound();
@@ -61,7 +61,7 @@ public class DemoController {
 
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
     public ResponseEntity<?> updateUser(@RequestBody User user) throws NotFound{
-        boolean status = false;
+        boolean status;
         if(null == user)
             throw new NotFound();
         else
