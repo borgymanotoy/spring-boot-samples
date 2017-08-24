@@ -9,13 +9,14 @@
     <packaging>jar</packaging>
 
     <name>demo</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Spring Boot Project that demonstrate RESTful API Error Handling (Customized for more readable error messages)</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.6.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
+        <!-- lookup parent from repository -->
     </parent>
 
     <properties>
@@ -30,6 +31,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jersey</artifactId>
+        </dependency>
+        -->
+
+        <!-- Just in case you needed to access the DB via JPA
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         -->
 
@@ -55,6 +63,27 @@
             <artifactId>json</artifactId>
             <version>20160810</version>
         </dependency>
+
+        <!--Jackson JSR310 converters. They take care of converting Java 8 date and time classes to JSON representation using the @JsonFormat annotation. -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+
+        <!--CODE-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--AUX TOOLS-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -65,6 +94,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>
